@@ -21,7 +21,7 @@ irm https://raw.githubusercontent.com/obamosaurus/WAV-HexPatcher/refs/heads/main
 ```
 
 ### 🔹 **Manual Download**  
-1️⃣ **Download the script**: Directly via this GitHub page
+1️⃣ **Download the script**: Directly via this GitHub page   
 2️⃣ **Run it in PowerShell**: Right-click the script and select **Run with PowerShell**  
 
 
