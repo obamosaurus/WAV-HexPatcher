@@ -1,73 +1,90 @@
 # HexWAV-Fixer – Fix "E-8305: Unsupported File Format" on Pioneer Devices  
 
-## 🚀 Introduction  
+<br>
 
-If you're a DJ using **Pioneer CDJs or XDJs** and have encountered the dreaded **"E-8305: Unsupported File Format"** error when playing WAV files, you're not alone. This issue is common on certain Pioneer devices and prevents playback of otherwise valid WAV files.  
+## 🚀 Introduction
 
-**HexWAV-Fixer** is a simple PowerShell script that quickly scans and fixes affected WAV files, ensuring they play correctly without losing any metadata, grids, or hot cues.  
+If you're using **Pioneer CDJs or XDJs**, you might have encountered the dreaded **"E-8305: Unsupported File Format"** error when playing WAV files. This frustrating issue affects certain Pioneer devices, preventing them from playing otherwise valid WAV files.  
 
-### ✅ Features  
-✔ **Fixes "E-8305" error** by modifying the necessary HEX values.  
-✔ **Keeps all metadata** intact, including playlists, grids, and hot cues.  
-✔ **Works on USB drives & custom folders** – scan and patch files in bulk.  
-✔ **Easy to use** – run a simple command in PowerShell or download & execute.  
+💡 **HexWAV-Fixer** is a simple PowerShell script that **automatically scans and fixes WAV files** so they play flawlessly—without losing metadata, grids, or hot cues.  
 
-## 🛠️ Setup & Usage  
+## ✅ Features  
+
+📌 **Fixes the "E-8305" error** by correcting specific WAV file headers.  
+📌 **Keeps all metadata intact**, including Rekordbox playlists, grids, and hot cues.  
+📌 **Works on USB drives & folders** – scan and patch files in bulk.  
+📌 **Super easy to use** – just run a single PowerShell command!  
+
+---
+<br>
+
+## 🛠️ Installation & Usage  
 
 ### 🔹 **Quick Install (Recommended)**  
+
 Run this command in **PowerShell** to download and execute the script automatically:  
 ```powershell
 irm https://raw.githubusercontent.com/obamosaurus/WAV-HexPatcher/refs/heads/main/hexPatcher.ps1 | iex
 ```
 
 ### 🔹 **Manual Download**  
-1️⃣ **Download the script**: Directly via this GitHub page   
-2️⃣ **Run it in PowerShell**: Right-click the script and select **Run with PowerShell**  
 
+1️⃣ **Download the script**: Available directly on this GitHub page.  
+2️⃣ **Run it in PowerShell**: Right-click the script and select **Run with PowerShell**.  
 
-<br></br>
-## 🔬 Technical Details  
+---
+<br>
+
+## 🔬 What’s Going Wrong?  
 
 ### ⚠️ **The Root Problem**  
 
-Certain Pioneer DJ devices **cannot read specific WAV files** due to an incorrect value in the file header.   
-This occurs because some encoding tools, like **FFmpeg**, set a format identifier (`wFormatTag`) that Pioneer devices don't recognize.   
-Various Music Rippers tend to cause this problem aswell.
+Certain Pioneer DJ devices **cannot read specific WAV files** due to an incorrect value in the file header.  
+
+This issue arises because some encoding tools, like **FFmpeg**, assign an unsupported format identifier (`wFormatTag`) that Pioneer devices don’t recognize. Some music-ripping software also causes this problem.  
 
 ### ❌ **Affected Devices**  
-The **CDJ-2000NXS2, XDJ-RX2, and XDJ-1000 series** are known to have issues with certain WAV files.  
 
-Some firmware updates have partially addressed this issue, but many devices still reject files if their `wFormatTag` is incorrectly set to **0xFEFF** instead of **0x0100**.  
+The following Pioneer models (and possibly more) may struggle with certain WAV files:  
+📌 **CDJ-2000NXS2**  
+📌 **XDJ-RX2**  
+📌 **XDJ-1000 Series**  
 
-### 🔎 **More about the issue**  
-This problem is well documented by **Auragami**, who created a tool called [WavFix](https://github.com/Auragami/WavFix) to address the same issue.  
-🎥 **Watch his video explaining the problem in detail:**  
-[![Watch the Video](https://img.youtube.com/vi/ain9SgBfgRY/0.jpg)](https://www.youtube.com/watch?v=ain9SgBfgRY)  
-
-You can also read more in this **Reddit thread:**  
-🔗 [Pioneer DJ Error E-8305 Discussion](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/)  
+Some firmware updates have attempted to fix this, but **many devices still reject files if their `wFormatTag` is set to `0xFEFF` instead of `0x0100`**.  
 
 ---
+<br>
 
-### 🔍 **How HexWAV-Fixer Works**  
+## 🔍 How HexWAV-Fixer Works  
 
-WAV files store metadata in a **header** before the actual audio data. The `wFormatTag` field at **offset `0x14` (20 bytes) and `0x15` (21 bytes)`** determines the audio format:  
+WAV files contain a **header section** before the actual audio data. The `wFormatTag` field at **offset `0x14` (20 bytes) and `0x15` (21 bytes)`** determines the audio format:  
 
-- **✅ Correct Value**: `01 00` (Standard PCM)  
-- **❌ Incorrect Value**: `FE FF` (Extensible Format, causes "E-8305" error)  
+✅ **Correct Value**: `01 00` (Standard PCM – Plays normally)  
+❌ **Incorrect Value**: `FE FF` (Extensible Format – Causes "E-8305" error)  
 
-HexWAV-Fixer scans all WAV files in the selected directory and:  
-✔ **Lists all files and their HEX values** at the relevant offset.  
+**HexWAV-Fixer scans all WAV files in the selected directory and:**  
+✔ **Lists files and their HEX values** at the relevant offset.  
 ✔ **Highlights incorrect values** (displayed in orange/yellow).  
 ✔ **Fixes all affected files** by replacing `FE FF` with `01 00`.  
 
-This fix **does not alter any audio data, metadata, or hot cues**, ensuring that your playlists and grid info remain untouched.  
+💡 This fix **does not alter audio data, metadata, or hot cues**, ensuring your playlists and grids remain intact!  
 
 ---
+<br>
+
+## 🔎 **More About the Issue**  
+
+This problem has been researched by [Auragami](https://github.com/Auragami), who offers a similar tool for modifying WAV headers. However, **his method doesn’t modify files inside the playlist**, meaning you’ll lose hot cues and grids in Rekordbox.  
+
+For more discussions on this, check out:  
+[Reddit thread on Pioneer DJ Error E-8305](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/)  
+
+---
+<br>
 
 ## 🤝 Credits & Additional Tools  
 
-🔹 **Thanks to [Auragami](https://github.com/Auragami/WavFix)** for researching this issue and providing another solution.  
+🔹 **Big thanks to [Auragami](https://github.com/Auragami/WavFix)** for researching this issue and providing an alternative solution.  
 🔹 **Inspired by discussions in the [Rekordbox Reddit community](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/).**  
 
-If this tool helped you, feel free to **star ⭐ the repo** and share it with other DJs! 🎧🔥
+⭐ **If this tool helped you, consider starring the repo and sharing it with others!**  
