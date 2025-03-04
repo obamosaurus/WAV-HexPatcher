@@ -6,7 +6,7 @@
 
 If you're using **Pioneer CDJs or XDJs**, you might have encountered the dreaded **"E-8305: Unsupported File Format"** error when playing WAV files. This frustrating issue affects certain Pioneer devices, preventing them from playing otherwise valid WAV files.  
 
-💡 **HexWAV-Fixer** is a simple PowerShell script that **automatically scans and fixes WAV files** so they play flawlessly—without losing metadata, grids, or hot cues.  
+💡 HexWAV-Fixer is a simple PowerShell script that **automatically scans and fixes WAV files** so they play flawlessly—without losing metadata, grids, or hot cues.  
 
 ## ✅ Features  
 
@@ -80,12 +80,21 @@ WAV files contain a **header section** before the actual audio data. The `wForma
 ---
 <br>
 
-## 🔎 **More About the Issue**  
+## 🔎 More About the Issue  
 
 This problem has been researched by Auragami, who offers a similar tool. However, his method only exports selected songs as a new file into a folder. Therefore, Rekordbox will not recognize it as the same song, and hot cues and grid information will be lost (as of now).   
 
 For more discussions on this, check out:  
 [Reddit thread on Pioneer DJ Error E-8305](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/)  
+
+---
+<br>
+
+## ✨ Planned Features
+
+- Mulithreading
+- Stable and improved GUI version
+- Backup and Recovery feature for playlists
 
 ---
 <br>
