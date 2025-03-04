@@ -13,7 +13,8 @@ If you're using **Pioneer CDJs or XDJs**, you might have encountered the dreaded
 📌 **Fixes the "E-8305" error** by correcting specific WAV file headers.  
 📌 **Keeps all metadata intact**, including Rekordbox playlists, grids, and hot cues.  
 📌 **Works on USB drives & folders** – scan and patch files in bulk.  
-📌 **Super easy to use** – just run a single PowerShell command!  
+📌 **Choose between USB mode or a custom path on your PC** for flexible fixes.  
+📌 **Check mode available** – scan for problematic tracks before applying fixes.  
 
 ---
 <br>
@@ -66,15 +67,22 @@ WAV files contain a **header section** before the actual audio data. The `wForma
 ✔ **Lists files and their HEX values** at the relevant offset.  
 ✔ **Highlights incorrect values** (displayed in orange/yellow).  
 ✔ **Fixes all affected files** by replacing `FE FF` with `01 00`.  
+✔ **Does not alter audio data, or hot cues**, ensuring your playlists and grids remain intact!  
 
-💡 This fix **does not alter audio data, metadata, or hot cues**, ensuring your playlists and grids remain intact!  
+### 🎛️ **Modes of Operation**  
+
+🔹 **USB Mode** – Select your USB drive and directly fix files in your Pioneer playlists.  
+🔹 **Custom Path Mode** – Choose a directory on your PC to scan and fix WAV files.  
+🔹 **Check Mode** – Scan files first to see which ones are incorrectly formatted before applying fixes.  
+
+💡 The script **should be completely safe to use** and does not damage your files. A backup function is planned as a feature for future updates.  
 
 ---
 <br>
 
 ## 🔎 **More About the Issue**  
 
-This problem has been researched by [Auragami](https://github.com/Auragami), who offers a similar tool for modifying WAV headers. However, **his method doesn’t modify files inside the playlist**, meaning you’ll lose hot cues and grids in Rekordbox.  
+This problem has been researched by Auragami, who offers a similar tool. However, his method only exports selected songs as a new file into a folder. Therefore, Rekordbox will not recognize it as the same song, and hot cues and grid information will be lost (as of now).   
 
 For more discussions on this, check out:  
 [Reddit thread on Pioneer DJ Error E-8305](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/)  
@@ -87,4 +95,5 @@ For more discussions on this, check out:
 🔹 **Big thanks to [Auragami](https://github.com/Auragami/WavFix)** for researching this issue and providing an alternative solution.  
 🔹 **Inspired by discussions in the [Rekordbox Reddit community](https://www.reddit.com/r/Rekordbox/comments/12zsadj/pioneer_dj_error_e8305_unsupported_file_format/).**  
 
-⭐ **If this tool helped you, consider starring the repo and sharing it with others!**  
+⭐ **If this tool helped you, consider starring the repo and sharing it with others!**
+
